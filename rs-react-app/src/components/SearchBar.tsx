@@ -1,42 +1,38 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-interface Props {
+interface SearchBarProps {
   onSearch: (query: string) => void;
 }
 
-interface State {
-  query: string;
-}
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
 
-class SearchBar extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { query: localStorage.getItem("searchQuery") || "" };
-  }
-
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ query: event.target.value });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
   };
 
-  handleSearch = () => {
-    const trimmedQuery = this.state.query.trim();
-    this.props.onSearch(trimmedQuery);
-    localStorage.setItem("searchQuery", trimmedQuery);
+  const handleSearch = () => {
+    onSearch(query.trim());
   };
 
-  render() {
-    return (
-      <div className="search-bar">
-        <input
-          type="text"
-          value={this.state.query}
-          onChange={this.handleChange}
-          placeholder="Введите запрос..."
-        />
-        <button onClick={this.handleSearch}>Search</button>
-      </div>
-    );
-  }
-}
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  return (
+    <div className="search-bar">
+      <input
+        type="text"
+        value={query}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        placeholder="Введите имя покемона..."
+      />
+      <button onClick={handleSearch}>Search</button>
+    </div>
+  );
+};
 
 export default SearchBar;

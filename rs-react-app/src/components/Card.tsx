@@ -1,19 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 
-interface Props {
+interface CardProps {
   name: string;
   description: string;
+  image?: string;
 }
 
-class Card extends Component<Props> {
-  render() {
-    return (
-      <div className="card">
-        <h3>{this.props.name}</h3>
-        <p>{this.props.description}</p>
-      </div>
-    );
-  }
-}
+const Card: React.FC<CardProps> = ({ name, description, image }) => {
+  return (
+    <div className="card">
+      {image && <img src={image} alt={name} className="card-image" />}
+      <h3 className="card-title">{name}</h3>
+      <p className="card-description">{description}</p>
+    </div>
+  );
+};
 
 export default Card;

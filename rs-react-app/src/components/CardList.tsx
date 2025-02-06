@@ -1,24 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "./Card";
 
-interface Props {
-  results: { name: string; description: string }[];
+interface CardListProps {
+  results: { name: string; description: string; image?: string }[];
 }
 
-class CardList extends Component<Props> {
-  render() {
-    return (
-      <div className="results">
-        {this.props.results.length > 0 ? (
-          this.props.results.map((item, index) => (
-            <Card key={index} name={item.name} description={item.description} />
-          ))
-        ) : (
-          <div>Нет результатов</div>
-        )}
-      </div>
-    );
-  }
-}
+const CardList: React.FC<CardListProps> = ({ results }) => {
+  return (
+    <div className="card-list">
+      {results.map((item, index) => (
+        <Card key={index} name={item.name} description={item.description} image={item.image} />
+      ))}
+    </div>
+  );
+};
 
 export default CardList;
