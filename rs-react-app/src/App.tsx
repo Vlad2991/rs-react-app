@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import Results from "./components/Results";
 import ErrorBoundary from "./components/ErrorBoundary";
+import NotFound from "./components/NotFound"; // Импортируем компонент NotFound
 import "./App.css";
 
 const App: React.FC = () => {
@@ -21,7 +22,12 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Results query={query} />} />
             <Route path="/search/:page" element={<Results query={query} />} />
-            <Route path="/search/:page/details/:details" element={<Results query={query} />} />
+            <Route
+              path="/search/:page/details/:details"
+              element={<Results query={query} />}
+            />
+            {/* Добавляем маршрут для страницы 404 */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </Router>

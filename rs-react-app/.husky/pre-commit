@@ -1,1 +1,2 @@
-npm test
+npx husky install
+npx husky add .husky/pre-push "npm test"

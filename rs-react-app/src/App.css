@@ -136,3 +136,18 @@ body {
   font-size: 18px;
   font-weight: bold;
 }
+
+.not-found {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  color: #ff0000;
+}
+
+.not-found p {
+  font-size: 1.2rem;
+  color: #555;
+}
