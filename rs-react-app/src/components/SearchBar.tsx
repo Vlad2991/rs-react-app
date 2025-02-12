@@ -5,19 +5,11 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
+  const [input, setInput] = useState("");
 
   const handleSearch = () => {
-    onSearch(query.trim());
-  };
-
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      handleSearch();
+    if (input.trim()) {
+      onSearch(input);
     }
   };
 
@@ -25,12 +17,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     <div className="search-bar">
       <input
         type="text"
-        value={query}
-        onChange={handleChange}
-        onKeyPress={handleKeyPress}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
         placeholder="Введите имя покемона..."
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch}>Поиск</button>
     </div>
   );
 };

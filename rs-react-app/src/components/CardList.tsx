@@ -1,18 +1,25 @@
 import React from "react";
+import { render, screen } from "@testing-library/react";
+import CardList from "./CardList";
 import Card from "./Card";
 
-interface CardListProps {
-  results: { name: string; description: string; image?: string }[];
-}
+describe("CardList Component", () => {
+  test("отображает указанное количество карточек", () => {
+    const mockResults = [
+      { name: "Card 1", description: "Description 1" },
+      { name: "Card 2", description: "Description 2" },
+      { name: "Card 3", description: "Description 3" }
+    ];
 
-const CardList: React.FC<CardListProps> = ({ results }) => {
-  return (
-    <div className="card-list">
-      {results.map((item, index) => (
-        <Card key={index} name={item.name} description={item.description} image={item.image} />
-      ))}
-    </div>
-  );
-};
+    render(<CardList results={mockResults} />);
+    
+    const cards = screen.getAllByText(/Description/);
+    expect(cards.length).toBe(mockResults.length);
+  });
 
-export default CardList;
+  test("отображает сообщение при отсутствии карт", () => {
+    render(<CardList results={[]} />);
+    
+    expect(screen.getByText("No cards available")).toBeInTheDocument();
+  });
+});
