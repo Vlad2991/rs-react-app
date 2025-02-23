@@ -298,44 +298,7 @@ h1 {
   align-self: center;
 }
 
-/* .details {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-}
 
-.details h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.details img {
-  display: block;
-  margin: 10px auto;
-}
-
-.details p {
-  margin: 10px 0;
-  color: #666;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
-} */
 .details {
   position: fixed;
   top: 50%;
@@ -354,7 +317,7 @@ h1 {
   margin: 0;
   font-size: 1.5rem;
   color: #333;
-  padding-right: 30px; /* Добавляем отступ справа, чтобы текст не заезжал под кнопку */
+  padding-right: 30px; 
 }
 
 .details img {
